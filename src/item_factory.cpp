@@ -1475,7 +1475,7 @@ void Item_factory::finalize_item_blacklist()
     for( const std::pair<const itype_id, std::vector<migration>> &migrate : migrations ) {
         const migration *parent = nullptr;
         for( const migration &migrant : migrate.second ) {
-            if( m_templates.count( migrant.replace ) == 0 && !migrant.optional) {
+            if( m_templates.count( migrant.replace ) == 0 && !migrant.optional ) {
                 debugmsg( "Replacement item (%s) for migration %s does not exist", migrant.replace.str(),
                           migrate.first.c_str() );
                 continue;
@@ -2457,7 +2457,7 @@ void Item_factory::check_definitions() const
                 debugmsg( "Invalid migration target: %s", m.replace.c_str() );
             }
             for( const migration::content &c : m.contents ) {
-                if( !m_templates.count( c.id ) ) {
+                if( !m_templates.count( c.id ) && !m.optional ) {
                     debugmsg( "Invalid migration contents: %s", c.id.str() );
                 }
             }
