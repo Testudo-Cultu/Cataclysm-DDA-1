@@ -57,11 +57,13 @@ decl_diag_eval effect_intensity_eval;
 decl_diag_eval encumbrance_eval;
 decl_diag_eval field_strength_eval;
 decl_diag_eval has_trait_eval;
+decl_diag_eval has_var_eval;
 decl_diag_eval knows_proficiency_eval;
 decl_diag_eval hp_eval;
 decl_diag_ass hp_ass;
 decl_diag_eval hp_max_eval;
 decl_diag_eval item_count_eval;
+decl_diag_eval item_rad_eval;
 decl_diag_eval monsters_nearby_eval;
 decl_diag_eval monster_species_nearby_eval;
 decl_diag_eval monster_groups_nearby_eval;
@@ -91,6 +93,7 @@ decl_diag_eval test_diag;
 decl_diag_eval test_str_len;
 decl_diag_eval u_val;
 decl_diag_ass u_val_ass;
+decl_diag_eval value_or_eval;
 decl_diag_eval vitamin_eval;
 decl_diag_ass vitamin_ass;
 decl_diag_eval warmth_eval;
@@ -148,9 +151,11 @@ inline std::map<std::string_view, dialogue_func_eval> const dialogue_eval_f{
     { "game_option", { "g", 1, option_eval } },
     { "has_trait", { "un", 1, has_trait_eval } },
     { "has_proficiency", { "un", 1, knows_proficiency_eval } },
+    { "has_var", { "g", 1, has_var_eval } },
     { "hp", { "un", 1, hp_eval } },
     { "hp_max", { "un", 1, hp_max_eval } },
     { "item_count", { "un", 1, item_count_eval } },
+    { "item_rad", { "un", 1, item_rad_eval } },
     { "monsters_nearby", { "ung", -1, monsters_nearby_eval } },
     { "mon_species_nearby", { "ung", -1, monster_species_nearby_eval } },
     { "mon_groups_nearby", { "ung", -1, monster_groups_nearby_eval } },
@@ -166,6 +171,7 @@ inline std::map<std::string_view, dialogue_func_eval> const dialogue_eval_f{
     { "spell_level_adjustment", { "un", 1, spell_level_adjustment_eval } },
     { "proficiency", { "un", 1, proficiency_eval } },
     { "val", { "un", -1, u_val } },
+    { "value_or", { "g", 2, value_or_eval } },
     { "vitamin", { "un", 1, vitamin_eval } },
     { "warmth", { "un", 1, warmth_eval } },
     { "weather", { "g", 1, weather_eval } },
