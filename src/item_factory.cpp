@@ -1475,7 +1475,7 @@ void Item_factory::finalize_item_blacklist()
     for( const std::pair<const itype_id, std::vector<migration>> &migrate : migrations ) {
         const migration *parent = nullptr;
         for( const migration &migrant : migrate.second ) {
-            if( m_templates.count( migrant.replace ) == 0 ) {
+            if( m_templates.count( migrant.replace ) == 0 && !migrant.optional) {
                 debugmsg( "Replacement item (%s) for migration %s does not exist", migrant.replace.str(),
                           migrate.first.c_str() );
                 continue;
@@ -2453,7 +2453,7 @@ void Item_factory::check_definitions() const
     }
     for( const auto &e : migrations ) {
         for( const migration &m : e.second ) {
-            if( !m_templates.count( m.replace ) ) {
+            if( !m_templates.count( m.replace ) && !m.optional ) {
                 debugmsg( "Invalid migration target: %s", m.replace.c_str() );
             }
             for( const migration::content &c : m.contents ) {
@@ -4476,6 +4476,7 @@ void Item_factory::add_migration( const migration &m )
 void Item_factory::load_migration( const JsonObject &jo )
 {
     migration m;
+    assign( jo, "optional", m.optional );
     assign( jo, "replace", m.replace );
     assign( jo, "variant", m.variant );
     assign( jo, "from_variant", m.from_variant );
