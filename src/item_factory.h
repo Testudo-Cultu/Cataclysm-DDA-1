@@ -48,7 +48,8 @@ class migration
         itype_id replace;
         std::set<std::string> flags;
         int charges = 0;
-        bool optional = false; // This is for any migration that may be missing IDs, for instance, if the migration's replacement item only exists in a mod but formerly existed in the base game (only useful for preventing error spam)
+        bool optional =
+            false; // This is for any migration that may be missing IDs, for instance, if the migration's replacement item only exists in a mod but formerly existed in the base game (only useful for preventing error spam)
 
         // if set to true then reset item_vars std::map to the value of itype's item_variables
         bool reset_item_vars = false;
